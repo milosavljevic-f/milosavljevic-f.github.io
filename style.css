@@ -10,7 +10,7 @@ body {
 
 #container {
 	background-color: white;
-	width: 900px;
+	width: 970px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -20,7 +20,7 @@ body {
 }
 
 #nav {
-	width: 180px;
+	width: 250px;
 	float: left;
 }
 
@@ -64,7 +64,9 @@ a:hover {
   padding: 20px;
   background: #fff;
   border-radius: 5px;
-  width: 30%;
+  width: 40%;
+  border-style: solid;
+  border-color: red;
   position: relative;
   transition: all 5s ease-in-out;
 }
@@ -87,7 +89,7 @@ a:hover {
 .popup .close:hover {
   color: #06D85F;
 }
-.popup .content {
+.popup .contentb {
   max-height: 30%;
   overflow: auto;
 }
