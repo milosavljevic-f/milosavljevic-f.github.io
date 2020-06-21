@@ -1,0 +1,191 @@
+<html> 
+<head>
+	<title>Notes in Econometrics</title>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
+<style>
+body {
+	font-family: "Computer Modern Serif", sans-serif;
+}
+</style>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script type="text/javascript" id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+	</script>
+</head>
+
+<body>
+<section><p>
+</p></section><section><h1>Ordinary Least Squares via Linear Algebra</h1>
+<p></p><h2>Regression as a linear projection</h2>
+<p>Last semester we derived the OLS\footnote{ What makes Ordinary Least Squares, ordinary? OLS involves minimizing the sum of the residuals squared. As we will see in later sections, this is appropriate when error is homoskedastic and errors are not correlated with each other (also called `autocorrelation'), that is, when the error variance-covariance matrix is the identity matrix.} formula by minimizing the sum of square error, however, we can also arrive at the least squares estimator via a `linear algebra’ approach and see that it yields the same model. Here, I closely follow \citeA{chambs}. The goal of regression is to fit a model onto observational data. In linear regression with an intercept we want to explain a dependent variable with a set of independent variables. Suppose we have: \((1,2) , (2,3), (3,4)\). We can perfectly fit this data with a linear model of the form \(y=\alpha + \beta x\), where \(\alpha = 1\) and \(\beta = 1\). However, suppose we have a new observation \((3,3)\). We can no longer fit the data perfectly. Writing this out as a linear system:
+\begin{align*}
+    y_1 = \alpha + x_1 \quad &\implies \quad 2= \alpha + \beta\\
+    y_2 = \alpha + x_2 \quad &\implies \quad 3= \alpha + 2 \beta\\
+    y_3 = \alpha + x_3 \quad &\implies \quad 4= \alpha + 3 \beta\\
+    y_4 = \alpha + x_4 \quad &\implies \quad 3= \alpha + 3 \beta
+\end{align*}
+Or in matrix form: \(\yb=X\mathbf{b}\) (Note: this is also an illustration of how the intercept can simply be modeled as a column of ones in the \(X\) matrix)\footnote{ For simplicity \(\eb\) has been omitted here and the model is usually \(\yb = X\mathbf{b}+\eb\).}, where:
+$$\yb = \left[ \begin{array}{cccc} 2 & 3 & 4 & 3
+\end{array} \right]'
+\qquad X = \left[ \begin{array}{cccc}
+     1 & 1 & 1 & 1 \\
+     1 & 2 & 3 & 3 
+\end{array} \right]' \qquad \mathbf{b}= \left[ \begin{array}{cc}
+     \alpha & \beta
+\end{array} \right]'$$ 
+</p>
+<p>Notice that \(\yb\) is not in the column space of \(X\). That is, no linear combinations of the columns of \(X\) (call them \(C_1\) and \(C_2\)) give \(\yb\). This can be visualized as follows:
+</p>
+<p>INPUT IMAGE 1 
+</p>
+<p>\(\yb\) is not in the column space (\(C(X)\)) of \(X\). Thus, there is no \(\mathbf{b}\) such that \(X \mathbf{b}\) will give \(\yb\).
+</p>
+<p>While we can't perfectly account for \(\yb\), since it isn't in the column space of \(X\), we can approximate it with the closest thing: a projection onto our column space, \(\mathbf{p}\). The distance from our projection to the true value is \(\ehat\).
+</p>
+<p>INPUT IMAGE 2 
+</p>
+<p>The projection will be some linear combination of the columns of \(X\), or \hlpink{\(\mathbf{p} = X \mathbf{\hat{b}}\)}. Further, the error is the difference between the true result and the projection: \hlpink{\(\mathbf{\hat{e}}=\yb-\mathbf{p}\)}. Clearly,\footnote{ While the intuition is clear, the proof is not presented here and can be found in \citeA{stach}.} the \(\mathbf{p}\) that best approximates \(\yb\) will be the one that minimizes the error \(\mathbf{\hat{e}}\). This occurs when \(X\) and \(\mathbf{\hat{e}}\) are orthogonal (the inner product between them is zero).\footnote{ Note: in \citeA{plobs} we start from the formula \(\textbf{b}=(X'X)^{-1}X'\yb\), which is obtained from minimizing the sum of least squares, and then we show this as a result. This can be shown as follows:\newline
+\(\mathbf{\hat{e}} = \yb-X\mathbf{\hat{b}}\)\newline
+\(\implies X'\ehat = X'\yb - X'X \mathbf{\hat{b}} \)\newline
+\(= X'\yb - X'X (X'X)^{-1}X'\yb = X'\yb - X'\yb = 0\) \newline } 
+\hlpink{Thus:}
+$$ < X , \mathbf{\hat{e}}> = \mathbf{0} \qquad \iff \qquad X'\ehat = 0$$
+Substituting in and solving\footnote{ \(X \cdot \mathbf{\hat{e}}=X' \mathbf{\hat{e}} = X' (\yb-X\mathbf{\beta}) = 0 \quad \implies X'\yb=X'X \mathbf{\beta} \implies \textbf{b}=(X'X)^{-1}X'\yb\)\newline
+When \(X\) has linearly independent columns \(X'X\) will be invertible, and we can see this in the Appendix.} we get the least squares estimator:
+\begin{empheq}[box=\tcbhighmath]{equation*}
+    \mathbf{\hat{b}} = (X'X)^{-1}X' \yb
+\end{empheq}
+</p>
+<p>Therefore, instead of solving \(\yb=X \mathbf{b}\) for \(\mathbf{b}\), we do the next best thing and solve for the \(\mathbf{\hat{b}}\). \(X \mathbf{\hat{b}}\) will give the orthogonal projection (since this will minimize the error) of \(\yb\) onto the column space, \(\mathbf{p}\).
+</p>
+<p>Before we wrap up this section, it is useful to define two more objects which are used in proofs in the following sections: the projection and residual projection (a.k.a. the annihilator) matrices.\footnote{ These are \(n \times n\) matrices.} The projection of \(\yb\) onto \(C(X)\) above was a linear transformation, thus we can represent it with a \hlpink{projection matrix}\footnote{ We get this by rearranging \(X \mathbf{\hat{b}}= P \yb\)}:
+$$P = X(X'X)^{-1}X'$$
+We also define the \hlpink{residual projection matrix} as a projecting to the space orthogonal to the range of \(P\) (orthogonal to the space of columns of \(X\)):
+$$M=I-P$$
+We can derive a number of properties of \(P\),\footnote{ \(P\) is (proof in Appendix): \begin{itemize}
+    </li><li> Symmetric: \(P'=P\)
+    </li><li> Idempotent: \(PP=P\)
+    </li><li> Orthogonal Projection: \(\lambda=0,1\)
+    </li><li> \(\sum_i \lambda_i = rank(P)= tr(P)=k\)
+    </li><li> Other: \(P\) is linear, positive semi-definite, \(P\yb \in span(X)\), \(\yb - P\yb \perp span(X)\), \(||\yb||=||P\yb||^2+||\yb - P\yb||^2\), and \(||P\yb|| \leq ||\yb||\).
+\end{itemize}} as well as \(M\).\footnote{ \(M\) is (proof in Appendix):
+\begin{itemize}
+    </li><li> Also symmetric and idempotent.
+    </li><li> \(M = proj(X^\perp)\) (projects orthogonal to columns of \(X\)): (\(MX=0\))
+    </li><li> \(\yb = P \yb + M \yb\)
+    </li><li> \(Me=\ehat\)
+    </li><li> \(P\yb \perp M\yb\)
+    </li><li> \(PM=MP=0\) or \(P'M=M'P=0\).
+\end{itemize}}
+</p>
+<p></p><h2>Error variance</h2>
+<p>Suppose we wish to estimate the variance of \(\mathbf{e}\). Assuming the model was homoscedastic, if we knew the true errors \(\mathbf{e}\), we could simply use the sum of square errors: \(var(e)=\frac{1}{n}\mathbf{e'e}\). Thus, we might wish to replace it by sum of square estimated errors: \(var(e) \approx \frac{1}{n}\mathbf{\hat{e}'\hat{e}}\). However, using \hlpink{\(\mathbf{\hat{e}}=M\mathbf{e}\)}, from the previous section, we have (Proof in the Appendix):
+\begin{empheq}[box=\tcbhighmath]{equation*}
+    (\mathbf{\hat{e}})'\mathbf{\hat{e}}=\eb'M\eb = \mathbf{e'e}-(P \mathbf{e})'(P\mathbf{e})
+\end{empheq}
+Which implies \((\mathbf{\hat{e}})'\mathbf{\hat{e}} \leq \mathbf{e'e}\). That is, our estimator underestimates the error variance. This will be important when we are trying to determine a measure of goodness-of-fit, since we'll need to take into account this underestimation.
+</p>
+<p>This is Pythagoras' theorem in disguise. Since \(\mathbf{\hat{e}}\) and \(P\mathbf{e}\) are orthogonal:\footnote{ \((P\eb)'=\eb'X(X'X)^{-1}X'\)\newline
+\((P\eb)'\ehat = \eb'X(X'X)^{-1}X'\yb-\eb'X(X'X)^{-1}X'X\bhat=0\)}
+</p>
+<p>INPUT IMAGE 3
+</p>
+<p></p><h2>Frisch-Waugh-Lovell Theorem</h2>
+<p>The \hlcyan{Frisch-Waugh-Lovell} (FWL) theorem is an important tool which has several useful applications, such as allowing the partialling out all other regressors to allow one to see the effect of one (or more) independent variable on a dependent variable with all other effects accounted for. In this section, I follow \citeA{stach}.
+</p>
+<p>Suppose we have a model:
+$$\mathbf{y} = X \mathbf{\beta} + \mathbf{e}$$
+where we split the columns of \(X\) into two matrices, \(X= [X_1, X_2]\), and consequently \(\mathbf{\beta} = [\mathbf{\beta_1}, \mathbf{\beta_2}]'\). Then to get \(\mathbf{\beta_1}\) we can:
+\begin{enumerate}
+    </li><li> Run a regression of \(\mathbf{y}\) on \(X_1\) and \(X_2\) on \(X_1\), and denote the residuals of these regressions by \(\mathbf{y^*}=M_1 \mathbf{y}\) (the part of \(\mathbf{y}\) not explained by \(X_1\)) and \(X_2^*=M_1 X_2\) (the part of \(X_2\) not explained by \(X_1\)).
+    </li><li> Run a regression of \(\mathbf{y^*}\) on \(X_2^*\) (here we are explaining the part of \(\mathbf{y}\) not explained by \(X_1\) with the part of \(X_2\) not explained by \(X_1\)), this will yield \(\mathbf{\beta_2}\).
+\end{enumerate}
+This will be the \emph{same} as the second element of the vector: \(\mathbf{\beta}=(X'X)^{-1}X'\mathbf{y}\). More formally, this is written as follows.
+\begin{theorem}[FWL theorem]
+The vector \(\mathbf{\beta_2}\) satisfies:
+\begin{empheq}[box=\tcbhighmath]{equation*}
+    \bhat_2=((M_1 X_2)'(M_1 X_2))^{-1} (M_1 X_2)' (M_1 \yb)
+\end{empheq}
+\end{theorem}
+</p>
+<p>\textbf{Proof.} (Appendix 1)
+This states, that we can also get \(\bhat_2\) by regressing \(M_1 \yb\) on \(M_1 X_2\).
+</p>
+<p>\subsubsection{Mean-Correction}
+A very useful application of the FWL theorem is mean-correction. We can do our regression on mean-corrected data and not lose any information, since this is the same as a regression on the uncorrected data with an intercept (column of ones in the \(X\) matrix).\footnote{ In other words, a regression with an intercept will have the same estimated coefficients as a no-intercept regression after all variables have been centered around their mean.} Let's step through this.
+</p>
+<p>As can be seen from the very first example of this note, when the \(X\) vector has a column of 1's, the estimator associated with this column is just the intercept (\(\alpha\)). If \(X\) only consisted of this column (\(X=\mathbf{1_n}\)), then \(\alpha = \Bar{y}\).\footnote{ \(\beta = (\left[ \begin{array}{ccc}
+     1 & \hdots & 1
+\end{array} \right] \left[ \begin{array}{c}
+     1  \\
+     \vdots \\
+     1
+\end{array} \right])^{-1} (\left[ \begin{array}{ccc}
+     1 & \hdots & 1
+\end{array} \right] *\mathbf{y} = \frac{1}{n} \sum_i y_i = \Bar{y}\(} Thus, \)P\( creates a vector of sample means (when \)X=\mathbf{1_n}\(). To get demeaned values we subtract \)\mathbf{y}\( by the sample means and thus \)M\( creates demeaned values: \)M\mathbf{y}=\mathbf{y}-\mathbf{1_n}\Bar{y}\(.\footnote{ \)\mathbf{y}-P\mathbf{y}=(I-P)\mathbf{y}=M\mathbf{y}\(.} Now, consider the FWL theorem where the \)X_1\( partition is the vector of ones:
+\begin{enumerate}
+    </li><li> The regression of \(\mathbf{y}\) on \(X_1\) has the residuals \(\mathbf{y^*}=M_1\mathbf{y}\), which as just mentioned is the demeaned \(\mathbf{y}\) vector.
+    </li><li> The regression of \(X_2\) on \(X_1\) similarly has the residuals of the demeaned values of \(X_2\) (\(X_2^*=M_1 X_2 = X_2 - \Bar{X_2}\)).
+    </li><li> Finally, regress \(\mathbf{y^*}\) on \(X_2^*\). We can see \(\mathbf{\beta_2}=((X_2-\Bar{X_2})'(X_2-\Bar{X_2}))^{-1}(X_2-\Bar{X_2})'(\mathbf{y}-\Bar{y})\). Thus, the OLS estimator (with an intercept) for regular data is the same as an OLS estimate on demeaned data.
+\end{enumerate}
+</p>
+<p>It should be noted that this principle also applies to seasonally-adjusted data. We can undertake analysis on seasonally-adjusted data and not lose information since the results would be the same as a regression that has unadjusted data and seasons.
+</p>
+<p></p>
+<p></p><h2>ANOVA and measure of determination</h2>
+<p>Multiplying \hlpink{\(\mathbf{y}=P\mathbf{y}+M\mathbf{y}\)} by \(\mathbf{y'}\) yields the ANOVA identity:
+$$\mathbf{y'y}=(X \mathbf{\hat{\beta}})'(X \mathbf{\hat{\beta}})+(\mathbf{\hat{e}})'(\mathbf{\hat{e}})$$
+Recall from last semester that the correlation of determination (\(R^2\)) is just the regression sum of squares over the total sum of square, or 1 minus residual sum of squares over total sum of squares (\(R^2=SS_{reg}/SS_{tot}=1-SS_{res}/SS_{tot}\))\footnote{
+This definition comes from ANOVA: \(Var(\yb)=Var(\hat{\yb})+Var(\eb)\), dividing through by \(Var(\hat{\yb})\) and plugging in \(Var(\hat{\yb}) \equiv \sum (y_i - \Bar{y})^2\) yields this definition.
+}. When the \(\mathbf{y}\) and \(X\) are mean-corrected, then \(SS_{tot}=\sum(y_i-\Bar{y})^2=\yb'\yb\) and \(SS_{reg}=\sum(X\bhat-\Bar{X}\bhat)^2=(X\bhat)'X\bhat\). In this case we have:\footnote{ If we do not have mean-corrected data, then we have:
+$$R^2 = 1- \frac{(\mathbf{\hat{e}})'(\mathbf{\hat{e}})}{\sum(y_i-\Bar{y})^2}$$
+In this case, we can have a negative \(R^2\) when \ldots}
+\begin{empheq}[box=\tcbhighmath]{equation*}
+    R^2 = \frac{(X \mathbf{\hat{\beta}})'(X \mathbf{\hat{\beta}})}{\mathbf{y'y}} = 1- \frac{(\mathbf{\hat{e}})'(\mathbf{\hat{e}})}{\mathbf{y'y}}
+\end{empheq}
+However, we should recall that \((\mathbf{\hat{e}})'(\mathbf{\hat{e}})\) is biased. We can correct it into the adjusted-\(R^2\), as follows:\footnote{ We derive unbiased estimators for error variance (and total variance) in the following section.}
+\begin{empheq}[box=\tcbhighmath]{equation*}
+    \Bar{R}^2 = 1- \frac{(\mathbf{\hat{e}})'(\mathbf{\hat{e}})/(n-k)}{(\sum(\mathbf{y_i}-\mathbf{y})^2)/(n-1)}
+\end{empheq}
+</p>
+<p></p>
+<p></p><h2>Appendix 1- Proofs</h2>
+<p>\textbf{Proof of the Invertibility of \(X'X\)}:\\
+\noindent
+We assumed \(\sum_{i=1}^n x_i x_i' = X'X\) was positive definite. Any positive definite matrix is invertible. To see this:
+$$Invertible \implies det(X'X) \neq 0 \qquad det(X'X)=\lambda_1 \lambda_2 \hdots \lambda_n >0 \quad (\mathbf{v'}(X'X)\mathbf{v}=\lambda_i 
+\mathbf{v'}\mathbf{v})$$
+</p>
+<p>\noindent
+\textbf{Properties of \(P\) and \(M\)}:\\
+\noindent
+Then
+\\
+\noindent
+\(\mathbf{\ehat'\ehat}\):
+$$\ehat'\ehat = (M\eb)'(M\eb)=\eb'M'M\eb=\eb' M\eb$$
+$$\eb' M \eb = \eb' (I-P) \eb = \eb'\eb - \eb'P\eb = \eb'\eb - \eb'P'P\eb = \eb' \eb - (P\eb)'(P\eb)$$
+</p>
+<p>\noindent
+\textbf{Proof of FWL theorem}:\\
+\noindent
+We can write \(\yb=X\bhat + \ehat\) as:
+$$\yb = X\bhat + M\yb = X_1\bhat_1+X_2\bhat_2+M\yb$$
+Premultiplying by \(X_2'M_1\):
+$$X_2'M_1\yb = X_2'M_1 X_1\bhat_1+ X_2'M_1 X_2\bhat_2+X_2'M_1 M\yb$$
+The first time on the RHS is zero since \(M_1 X_1 = 0\). Further, the third term on the RHS is also zero since: \((X_2'M_1 M \yb)'=\yb'M'M_1'X_2=\yb'M X_2 = 0\) (i.e. \(0'=0\) and \(M X_2 = 0\)). Thus:
+$$X_2'M_1\yb = X_2'M_1 X_2\bhat_2$$
+Rearranging:
+$$\bhat_2=(X_2'M_1 X_2)^{-1} X_2'M_1 \mathbf{y}$$
+We need to verify \(X_2'M_1 X_2\) is invertible. It is sufficient to show it is positive definite.
+$$X_2'M_1 X_2 = X_2'M_1'M_1 X_2 = (M_1 X_2)'M_1 X_2$$
+Then by the definition of positive definite (for any \(\mathbf{a}\neq 0\)):
+$$\mathbf{a'}(M_1 X_2)'(M_1 X_2)\mathbf{a}=(M_1 X_2 \mathbf{a})'(M_1 X_2 \mathbf{a}) = ||M_1 X_2 \mathbf{a}||^2 \geq 0$$
+However, this is only equal to zero if \(X_2\mathbf{a}\) is in the span of \(X_1\), however, if it were then \(X\) would not be linearly independent.
+</p>
+<p>Further, notice that we can write this as:
+$$\bhat_2=((M_1 X_2)'M_1 X_2)^{-1} (M_1 X_2)' M_1 \yb$$
+Thus, we can write \(\bhat_2\) as a regression of \(\yb^*\) on \(X_2^*\).
+</p>
+</body>
