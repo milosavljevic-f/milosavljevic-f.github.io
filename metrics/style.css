@@ -29,6 +29,17 @@ body {
 	float: right;
 }
 
+.button {
+  font-size: 1em;
+  display: flex;
+  padding: 5px 5px;
+  pointer-events: none;
+  background-color: #FFB6C1;
+  color: black;
+  border: 2px solid red;
+  border-radius: 20px/50px;
+}
+
 a:link {
   color: black;
   font-family: monospace;
@@ -92,4 +103,11 @@ a:hover {
 .popup .contentb {
   max-height: 30%;
   overflow: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
