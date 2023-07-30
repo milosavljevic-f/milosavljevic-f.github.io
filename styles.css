@@ -8,7 +8,7 @@ header {
   background-color: transparent;
   color: #000;
   text-align: center;
-  padding: 60px 0;
+  padding: 100px 0; /* Increased padding for greater offset */
 }
 
 .header-container {
@@ -18,7 +18,8 @@ header {
 
 h1 {
   margin: 0;
-  font-size: 48px;
+  font-size: 32px; /* Decreased font size */
   color: #000;
-  font-family: Garamond, serif;
+  font-weight: normal; /* Removed bold style */
+  padding: 20px; /* Added padding to create space around the header text */
 }
