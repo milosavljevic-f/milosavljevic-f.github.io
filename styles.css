@@ -54,3 +54,33 @@ h2 {
   font-size: 24px;
   margin-bottom: 10px;
 }
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  display: flex; /* Use flexbox to arrange the tabs */
+  justify-content: flex-end; /* Align the tabs to the right */
+}
+
+.nav-links li {
+  margin-left: 15px; /* Add some spacing between the tabs */
+}
+
+.nav-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 5px 10px;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.nav-links a.active {
+  font-weight: bold; /* Bold the active tab */
+}
+
+.nav-links a:hover {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
