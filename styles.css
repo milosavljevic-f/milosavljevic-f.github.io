@@ -55,16 +55,20 @@ h2 {
   margin-bottom: 10px;
 }
 
+.website-heading {
+  margin-top: 40px; /* Adjust this value to control the offset */
+}
+
 .nav-links {
   list-style: none;
   padding: 0;
-  margin: 20px 0;
-  display: flex; /* Use flexbox to arrange the tabs */
-  justify-content: flex-end; /* Align the tabs to the right */
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .nav-links li {
-  margin-left: 15px; /* Add some spacing between the tabs */
+  margin-left: 15px;
 }
 
 .nav-links a {
