@@ -9,7 +9,6 @@ header {
   color: #000;
   text-align: center;
   padding: 100px 0;
-  position: relative; /* Added position relative for proper positioning */
 }
 
 .header-container {
