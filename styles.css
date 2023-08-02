@@ -13,9 +13,12 @@ header {
 }
 
 .header-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 40px 20px; /* Adjust padding for top, right, and bottom */
 }
+
 
 h1 {
   margin: 0;
@@ -64,9 +67,10 @@ h2 {
 .nav-links {
   list-style: none;
   padding: 0;
-  margin: 20px 0;
-  display: flex; /* Use flexbox to arrange the tabs */
-  justify-content: flex-end; /* Align the tabs to the right */
+  margin: 0;
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Add space to the right of navigation */
 }
 
 .nav-links li {
