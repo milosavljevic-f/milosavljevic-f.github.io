@@ -13,8 +13,9 @@ header {
 
 .header-container {
   display: flex;
-  align-items: flex-start; /* Align items to the top of the container */
+  align-items: center; /* Vertically align items */
   justify-content: space-between; /* Distribute items evenly horizontally */
+  padding: 20px 40px; /* Add padding for spacing */
 }
 
 h1 {
@@ -57,7 +58,9 @@ h2 {
 }
 
 .website-heading {
-  margin: 40px 0 0; /* Adjust the top margin to create spacing */
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0; /* Remove margin */
 }
 
 .nav-links {
@@ -89,3 +92,6 @@ h2 {
   border-radius: 5px;
 }
 
+.centered-section {
+  text-align: center; /* Center align the text content */
+}
