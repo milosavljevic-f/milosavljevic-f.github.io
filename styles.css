@@ -12,8 +12,9 @@ header {
 }
 
 .header-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex;
+  align-items: flex-start; /* Align items to the top of the container */
+  justify-content: space-between; /* Distribute items evenly horizontally */
 }
 
 h1 {
@@ -56,7 +57,7 @@ h2 {
 }
 
 .website-heading {
-  margin-top: 40px; /* Adjust this value to control the offset */
+  margin: 40px 0 0; /* Adjust the top margin to create spacing */
 }
 
 .nav-links {
@@ -64,8 +65,7 @@ h2 {
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
+  align-items: center; /* Vertically align navigation links */
 }
 
 .nav-links li {
