@@ -15,7 +15,9 @@ h1 {
 }
 
 .header-container {
-  text-align: center;
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
   padding: 40px 40px 20px; /* Adjust padding for top, right, and bottom */
 }
 
