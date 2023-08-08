@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Garamond, serif;
-  font-size: 1em;
+  font-size: 16px;
 }
 
 .header {
@@ -56,47 +56,17 @@ h2 {
   font-weight: normal;
 }
 
-.nav-links {
-  list-style: none;
-  justify-content: flex-end; /* Align the tabs to the right */
-  padding: 20px;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  margin-right: 20px; /* Add space to the right of navigation */
-}
-
-.nav-links li {
-  margin-left: 15px; /* Add some spacing between the tabs */
-}
-
-.nav-links a {
-  color: #333;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 5px 10px;
-  transition: all 0.3s ease; /* Smooth transition for hover effect */
-}
-
-.nav-links a.active {
-  font-weight: bold; /* Bold the active tab */
-}
-
-.nav-links a:hover {
-  background-color: #ddd;
-  border-radius: 5px;
-}
-
 .centered-section {
   text-align: center; /* Center align the text content */
 }
 
 .nav-links {
   list-style: none;
-  padding: 0;
+  padding: 10px;
   margin: 20px 0;
   display: flex; /* Use flexbox to arrange the tabs */
   justify-content: flex-end; /* Align the tabs to the right */
+  margin-right: 20px; /* Add space to the right of navigation */
 }
 
 .nav-links li {
