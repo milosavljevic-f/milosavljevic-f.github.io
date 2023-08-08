@@ -4,11 +4,12 @@ body {
   font-family: Garamond, serif;
 }
 
-header {
-  background-color: transparent;
-  color: #000;
+.header {
+  padding: 60px;
   text-align: center;
-  padding: 100px 0;
+  background: white;
+  color: black;
+  font-size: 30px;
 }
 
 .header-container {
@@ -16,16 +17,6 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 40px 40px 20px; /* Adjust padding for top, right, and bottom */
-}
-
-
-h1 {
-  margin: 0;
-  font-size: 32px;
-  color: #000;
-  font-weight: normal;
-  padding: 20px;
-  text-align: center;
 }
 
 /* New CSS for the profile section */
