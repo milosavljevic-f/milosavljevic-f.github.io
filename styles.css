@@ -6,22 +6,16 @@ body {
 }
 
 .header {
-  padding: 60px;
-  text-align: center;
   background: white;
   color: black;
-  font-size: 30px;
 }
 
 h1 {
-  font-size: 3rem;
-  text-align: center;
+  font-size: 2rem;
 }
 
 .header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  text-align: center;
   padding: 40px 40px 20px; /* Adjust padding for top, right, and bottom */
 }
 
