@@ -15,6 +15,10 @@ h1 {
   font-weight: normal;  
 }
 
+.text-container {
+    margin-left: 20px; /* Adjust this value as needed */
+}
+
 .header-container {
   display: flex;
   align-items: center; /* Center vertically */
