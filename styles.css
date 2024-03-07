@@ -40,7 +40,7 @@ h1 {
 }
 
 .profile-container {
-  max-width: 60%; /* Set maximum width to 60% of the screen */
+  max-width: 95%; /* Set maximum width to 60% of the screen */
   margin: 0 auto;
   display: flex; /* To create a flexbox layout for photo and bio side-by-side */
 }
@@ -125,10 +125,12 @@ summary {
 }
 
 details[open] {
+  font-size: 1.0rem;
   padding: 0.5em;
 }
 
 details[open] summary {
   border-bottom: 1px solid #aaa;
+  color: #FF033E;
   margin-bottom: 0.5em;
 }
