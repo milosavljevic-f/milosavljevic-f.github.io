@@ -16,10 +16,12 @@ body {
 .header {
   background: white;
   color: black;
+  font-family: 'EB Garamond', serif;
 }
 
 h1 {
   font-size: 3rem;
+  font-family: 'EB Garamond', serif;
   font-weight: normal;  
 }
 
@@ -40,7 +42,7 @@ h1 {
 }
 
 .profile-container {
-  max-width: 95%; /* Set maximum width to 60% of the screen */
+  max-width: 1200px; /* Set maximum width to 60% of the screen */
   margin: 0 auto;
   display: flex; /* To create a flexbox layout for photo and bio side-by-side */
 }
@@ -60,7 +62,7 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 2rem;
   margin-bottom: 10px;
 }
 
@@ -113,7 +115,6 @@ h2 {
 }
 
 details {
-  border: 1px solid #aaa;
   border-radius: 4px;
   padding: 0.5em 0.5em 0;
 }
@@ -122,6 +123,7 @@ summary {
   font-size: 0.9rem;
   margin: -0.5em -0.5em 0;
   padding: 0.5em;
+  color: #FF033E;
 }
 
 details[open] {
@@ -131,6 +133,5 @@ details[open] {
 
 details[open] summary {
   border-bottom: 1px solid #aaa;
-  color: #FF033E;
   margin-bottom: 0.5em;
 }
