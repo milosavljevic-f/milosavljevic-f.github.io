@@ -2,8 +2,9 @@ body {
   max-width: 800px; /* Set your desired maximum width */
   margin: 0 auto; /* This centers the content horizontally */
   padding: 0 20px; /* Optional: Adds some padding to the sides for spacing */
-  font-family: 'EB Garamond', serif;
-  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
 .container {
@@ -111,32 +112,23 @@ h2 {
   background-color: #BA0021;
 }
 
-p {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.5;
+details {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 0.5em 0.5em 0;
 }
 
-a#myButton {
-  text-decoration: none;
-  color: #FF033E;
+summary {
+  font-weight: bold;
+  margin: -0.5em -0.5em 0;
+  padding: 0.5em;
 }
 
-#open {
-  dipslay: inline-block;
-  padding: 30px;
+details[open] {
+  padding: 0.5em;
 }
 
-#content {
-    display: none;
+details[open] summary {
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 0.5em;
 }
-
-#show:target #content {
-    display: inline-block;
-    padding: 30px;
-    margin: 0;
-}
-#show:target #open {
-    display: none;
-}
-
