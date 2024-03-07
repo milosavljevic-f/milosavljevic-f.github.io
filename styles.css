@@ -137,24 +137,29 @@ details[open] summary {
   margin-bottom: 0.5em;
 }
 
-.tooltip {
-  display: inline;
-  border-bottom: 1px dotted black;
+p {
+  padding:10px;
 }
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 420px;
-  text-align: center;
-  background-color: #fff;
-  border-radius: 6px;
-  padding: 5px 0;
-
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
+.tooltip {
+position: relative;
+display: inline;
+text-decoration: underline dotted black;
 }
 
 .tooltip:hover .tooltiptext {
-  visibility: visible;
+display: block;
+position: absolute;
+z-index: 3;
+padding: 0.3vw;
+left:50%;
+top:-19px;
+transform:translateX(-50%);
+width:100%;
+text-align:center;
+}
+
+.tooltiptext {
+display: none;
+border-radius: 0.3vw;
 }
