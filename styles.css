@@ -105,17 +105,26 @@ h2 {
   background-color: #BA0021;
 }
 
-select {
-    padding: 5px;
-    font-size: 16px;
+.accordion {
+    background-color: #f1f1f1;
+    color: #333;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: background-color 0.3s ease;
 }
 
-/* Hide the dropdown options by default */
-#abstract-options {
+/* Style for the hidden content */
+.panel {
+    padding: 0 10px;
     display: none;
+    background-color: white;
 }
 
-/* Show the dropdown options when the select is focused */
-select:focus + #abstract-options {
+/* Show the hidden content when the button is clicked */
+.active {
     display: block;
 }
