@@ -105,6 +105,11 @@ h2 {
   background-color: #BA0021;
 }
 
+.checkbox {
+    display: none;
+}
+
+/* Style for the accordion button */
 .accordion {
     background-color: #f1f1f1;
     color: #333;
@@ -124,7 +129,7 @@ h2 {
     background-color: white;
 }
 
-/* Show the hidden content when the button is clicked */
-.active {
+/* Show the hidden content when the checkbox is checked */
+.checkbox:checked + .panel {
     display: block;
 }
