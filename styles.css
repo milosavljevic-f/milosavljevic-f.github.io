@@ -105,4 +105,17 @@ h2 {
   background-color: #BA0021;
 }
 
+select {
+    padding: 5px;
+    font-size: 16px;
+}
 
+/* Hide the dropdown options by default */
+#abstract-options {
+    display: none;
+}
+
+/* Show the dropdown options when the select is focused */
+select:focus + #abstract-options {
+    display: block;
+}
