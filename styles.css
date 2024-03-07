@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color: #f0f0f0; /* Grey background color for the entire section */
   padding: 0;
   font-family: 'EB Garamond', serif;
   font-size: 18px;
@@ -28,7 +29,6 @@ h1 {
 
 /* New CSS for the profile section */
 .profile-section {
-  background-color: #f0f0f0; /* Grey background color for the entire section */
   padding: 40px;
 }
 
