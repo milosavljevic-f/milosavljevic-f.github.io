@@ -27,14 +27,14 @@ h1 {
 }
 
 .wp-container {
-    margin-left: 20px; /* Adjust this value as needed */
+    margin-left: 10px; /* Adjust this value as needed */
 }
 
 .header-container {
   display: flex;
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
-  padding: 30px 40px 10px; /* Adjust padding for top, right, and bottom */
+  padding: 20px 40px 10px; /* Adjust padding for top, right, and bottom */
 }
 
 /* New CSS for the profile section */
@@ -102,7 +102,7 @@ h2 {
 }
 
 .btn {
-  background-color: #B22222;
+  background-color: #eb4462;
   border: none;
   color: white;
   padding: 12px 30px;
