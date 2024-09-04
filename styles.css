@@ -34,7 +34,7 @@ h1 {
   display: flex;
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
-  padding: 30px 40px 20px; /* Adjust padding for top, right, and bottom */
+  padding: 30px 40px 10px; /* Adjust padding for top, right, and bottom */
 }
 
 /* New CSS for the profile section */
@@ -102,7 +102,7 @@ h2 {
 }
 
 .btn {
-  background-color: #80020;
+  background-color: #8B0000;
   border: none;
   color: white;
   padding: 12px 30px;
