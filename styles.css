@@ -34,12 +34,12 @@ h1 {
   display: flex;
   align-items: center; /* Center vertically */
   justify-content: center; /* Center horizontally */
-  padding: 20px 40px 10px; /* Adjust padding for top, right, and bottom */
+  padding: 10px 40px 5px; /* Adjust padding for top, right, and bottom */
 }
 
 /* New CSS for the profile section */
 .profile-section {
-  padding: 20px;
+  padding: 10px;
 }
 
 .profile-container {
