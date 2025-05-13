@@ -128,12 +128,12 @@ summary {
   font-weight: bold;
 }
 
-details[closed] {
+details[open] {
   font-size: 0.8rem;
   padding: 0.5em;
 }
 
-details[closed] summary {
+details[open] summary {
   border-bottom: 1px solid #aaa;
   margin-bottom: 0.5em;
 }
